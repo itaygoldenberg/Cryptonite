@@ -1,4 +1,4 @@
-﻿const COINGECKO_URL = "https://api.coingecko.com/api/v3";
+const COINGECKO_URL = "https://api.coingecko.com/api/v3";
 const COINCAP_URL = "https://rest.coincap.io/v3";
 const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 const ALLOWED_ORIGINS = new Set([
@@ -114,18 +114,27 @@ async function getPrices(symbols) {
     const requested = new Set(symbols);
 
     if (!pricesCache || pricesCache.expiresAt <= Date.now()) {
-        const response = await fetch(COINCAP_URL + "/assets?limit=150", {
-            headers: { Authorization: "Bearer " + process.env.COINCAP_API_KEY }
-        });
-        if (!response.ok) throw new Error("CoinCap prices request failed.");
+        try {
+            const apiKey = process.env.COINCAP_API_KEY?.trim();
+            if (!apiKey) throw new Error("CoinCap API key is missing.");
 
-        const payload = await response.json();
-        const data = {};
-        payload.data.forEach(coin => {
-            const price = Number(coin.priceUsd);
-            if (Number.isFinite(price) && price > 0) data[coin.symbol.toUpperCase()] = price;
-        });
-        pricesCache = { expiresAt: Date.now() + 5000, data };
+            const response = await fetch(COINCAP_URL + "/assets?limit=150", {
+                headers: { Authorization: "Bearer " + apiKey }
+            });
+            if (!response.ok) throw new Error("CoinCap prices request failed.");
+
+            const payload = await response.json();
+            const data = {};
+            payload.data.forEach(coin => {
+                const price = Number(coin.priceUsd);
+                if (Number.isFinite(price) && price > 0) data[coin.symbol.toUpperCase()] = price;
+            });
+            pricesCache = { expiresAt: Date.now() + 5000, data };
+        }
+        catch (error) {
+            if (!pricesCache) throw error;
+            pricesCache.expiresAt = Date.now() + 5000;
+        }
     }
 
     return Object.fromEntries(

@@ -1,7 +1,8 @@
-﻿import axios from "axios";
+import axios from "axios";
 import { AiAdviceModel } from "../models/ai-advice-model";
 import type { AiMarketData } from "../models/ai-market-data-model";
 import { appConfig } from "../utils/app-config";
+import { localApiService } from "./local-api-service";
 
 const AI_ADVICE_CACHE_PREFIX = "aiAdvice:";
 
@@ -11,11 +12,14 @@ class AiService {
     // Sends market data to the server and returns the cached or fresh recommendation.
     public async getAdvice(coinData: AiMarketData): Promise<AiAdviceModel> {
         try {
-            const response = await axios.post<{ recommendation: string; explanation: string }>(
-                appConfig.apiBaseUrl + "/ai/advice",
-                coinData
-            );
-            const advice = new AiAdviceModel(response.data.recommendation, response.data.explanation);
+            const advice = appConfig.useLocalOpenAiApi
+                ? await localApiService.getAdvice(coinData)
+                : await axios.post<{ recommendation: string; explanation: string }>(
+                    appConfig.apiBaseUrl + "/ai/advice",
+                    coinData
+                ).then(response => new AiAdviceModel(
+                    response.data.recommendation, response.data.explanation
+                ));
             this.writeCache(coinData.name, advice);
             return advice;
         }

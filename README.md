@@ -1,4 +1,4 @@
-﻿# Cryptonite
+# Cryptonite
 
 A React and TypeScript single page application that presents live data about the
 top 100 cryptocurrencies, draws real-time price reports, and provides AI-powered
@@ -84,6 +84,7 @@ contact links.
 
 ```text
 api/                    Protected Vercel API routes
+scripts/                Local API-key obfuscation helper
 src/
 |-- components/
 |   |-- coins-area/      CoinCard, SearchBox, LimitDialog
@@ -91,8 +92,8 @@ src/
 |   |-- pages-area/      Home, Reports, AiAdvice, About, Page404
 |-- models/              CoinModel, CoinDetailsModel, AiAdviceModel
 |-- redux/               coins-slice, selected-slice, search-slice, store
-|-- services/            CoinService, AiService
-|-- utils/               AppConfig
+|-- services/            CoinService, AiService, LocalApiService
+|-- utils/               AppConfig and local key decryption
 vercel.json             Production routing and SPA fallback
 ```
 
@@ -113,20 +114,21 @@ CoinCap is used for the live report and was approved as the project's real-time
 price provider. Prices are matched by symbol because CoinGecko and CoinCap use
 different coin ID formats.
 
-Create a CoinCap API key from the [CoinCap Pro Dashboard](https://pro.coincap.io/dashboard)
-and store it only as the `COINCAP_API_KEY` Vercel Environment Variable.
+Create a CoinCap API key from the [CoinCap Pro Dashboard](https://pro.coincap.io/dashboard).
+For Production, store the raw key only as the `COINCAP_API_KEY` Vercel Environment Variable.
 
 ## Running locally
 
-Install the frontend dependencies:
+Install the dependencies:
 
 ~~~bash
 npm install
 ~~~
 
-The frontend sends API requests to the same-origin /api Vercel Function.
+### Full Vercel development
 
-For the complete local application, install the Vercel CLI and run:
+The recommended local setup uses the same protected API architecture as Production.
+Install the Vercel CLI and run:
 
 ~~~bash
 npm install -g vercel
@@ -134,14 +136,41 @@ vercel login
 vercel dev
 ~~~
 
-Vercel prints the local URL, normally `http://localhost:3000`. For frontend-only
-development, `npm start` runs Vite on `http://localhost:5173`.
+Vercel prints the local URL, normally `http://localhost:3000`.
+
+### Optional encrypted-key workflow for the evaluator
+
+The project also keeps the instructor-approved local obfuscation workflow. Generate
+one encrypted value for each local API key without writing the original key to a file:
+
+~~~bash
+npm run encrypt:key -- CoinCap
+npm run encrypt:key -- OpenAI
+~~~
+
+Each command asks for the original key and prints one value beginning with `enc:`.
+Open `src/utils/app-config.ts` and replace the complete placeholder inside the
+matching quotes:
+
+~~~ts
+const ENCRYPTED_COINCAP_API_KEY = "enc:PASTE_THE_COINCAP_OUTPUT_HERE";
+const ENCRYPTED_OPENAI_API_KEY = "enc:PASTE_THE_OPENAI_OUTPUT_HERE";
+~~~
+
+Do not paste the original keys into source code. After adding the generated values,
+run `npm start`; Vite opens the app at `http://localhost:5173` and Development mode
+uses the matching local CoinCap and OpenAI key. CoinGecko remains keyless.
+
+This XOR-based obfuscation is included only for local evaluation and is reversible;
+it is not a replacement for server-side secret storage. Keep the placeholders in
+GitHub, Production builds and the submitted ZIP. The evaluator should generate values
+with their own keys on their own computer.
 
 ## Vercel API setup
 
-The API runs in a Vercel Function. API keys are stored in Vercel Environment
-Variables and are never placed in React source code, the browser bundle, GitHub
-or the ZIP.
+The API runs in a Vercel Function. Production API keys are stored in Vercel
+Environment Variables and are never placed in React source code, the browser bundle,
+GitHub or the ZIP. Vercel uses raw server-side values, not the optional `enc:` values.
 
 From the project root, connect the project and deploy:
 

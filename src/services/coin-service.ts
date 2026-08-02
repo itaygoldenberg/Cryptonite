@@ -1,8 +1,9 @@
-﻿import axios from "axios";
+import axios from "axios";
 import type { AiMarketData } from "../models/ai-market-data-model";
 import { CoinModel } from "../models/coin-model";
 import { appConfig } from "../utils/app-config";
 import { CoinDetailsModel } from "../models/coin-details-model";
+import { localApiService } from "./local-api-service";
 
 const COINS_CACHE_KEY = "coinsCache";
 const COINS_CACHE_MINUTES = 5;
@@ -31,9 +32,12 @@ class CoinService {
         const stale = this.readCache(true);
         if (this.pendingCoins) return this.pendingCoins;
 
-        this.pendingCoins = axios.get<CoinModel[]>(appConfig.apiBaseUrl + "/coins")
-            .then(response => {
-                const coins = response.data;
+        const request = appConfig.useLocalApis
+            ? localApiService.getAllCoins()
+            : axios.get<CoinModel[]>(appConfig.apiBaseUrl + "/coins").then(response => response.data);
+
+        this.pendingCoins = request
+            .then(coins => {
                 if (this.isCompleteList(coins)) {
                     this.coins = coins;
                     this.writeCache(coins);
@@ -62,11 +66,15 @@ class CoinService {
     // Returns the current price of one coin in the three supported currencies.
     public async getCoinDetails(id: string): Promise<CoinDetailsModel> {
         try {
-            const response = await axios.get<CoinDetailsModel>(
-                appConfig.apiBaseUrl + "/coins/" + encodeURIComponent(id) + "/details"
-            );
-            this.writeLocalCache(DETAILS_CACHE_PREFIX + id, response.data);
-            return new CoinDetailsModel(response.data.usd, response.data.eur, response.data.ils);
+            const details = appConfig.useLocalApis
+                ? await localApiService.getCoinDetails(id)
+                : await axios.get<CoinDetailsModel>(
+                    appConfig.apiBaseUrl + "/coins/" + encodeURIComponent(id) + "/details"
+                ).then(response => new CoinDetailsModel(
+                    response.data.usd, response.data.eur, response.data.ils
+                ));
+            this.writeLocalCache(DETAILS_CACHE_PREFIX + id, details);
+            return details;
         }
         catch (error) {
             const cached = this.readLocalCache<CoinDetailsModel>(DETAILS_CACHE_PREFIX + id);
@@ -78,11 +86,13 @@ class CoinService {
     // Returns the market fields required by the Vercel AI endpoint.
     public async getCoinDataForAi(id: string): Promise<AiMarketData> {
         try {
-            const response = await axios.get<AiMarketData>(
-                appConfig.apiBaseUrl + "/coins/" + encodeURIComponent(id) + "/ai-data"
-            );
-            this.writeLocalCache(AI_DATA_CACHE_PREFIX + id, response.data);
-            return response.data;
+            const data = appConfig.useLocalApis
+                ? await localApiService.getCoinDataForAi(id)
+                : await axios.get<AiMarketData>(
+                    appConfig.apiBaseUrl + "/coins/" + encodeURIComponent(id) + "/ai-data"
+                ).then(response => response.data);
+            this.writeLocalCache(AI_DATA_CACHE_PREFIX + id, data);
+            return data;
         }
         catch (error) {
             const cached = this.readLocalCache<AiMarketData>(AI_DATA_CACHE_PREFIX + id);
@@ -97,12 +107,14 @@ class CoinService {
         const pending = this.pendingPrices.get(cacheKey);
         if (pending) return pending;
 
-        const request = axios.get<Record<string, number>>(
-            appConfig.apiBaseUrl + "/reports/prices",
-            { params: { symbols: symbols.join(",") } }
-        )
-            .then(response => response.data)
-            .finally(() => this.pendingPrices.delete(cacheKey));
+        const request = (
+            appConfig.useLocalCoinCapApi
+                ? localApiService.getPrices(symbols)
+                : axios.get<Record<string, number>>(
+                    appConfig.apiBaseUrl + "/reports/prices",
+                    { params: { symbols: symbols.join(",") } }
+                ).then(response => response.data)
+        ).finally(() => this.pendingPrices.delete(cacheKey));
 
         this.pendingPrices.set(cacheKey, request);
         return request;
