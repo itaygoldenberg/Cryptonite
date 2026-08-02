@@ -1,4 +1,4 @@
-# Cryptonite
+﻿# Cryptonite
 
 A React and TypeScript single page application that presents live data about the
 top 100 cryptocurrencies, draws real-time price reports, and provides AI-powered
@@ -11,8 +11,8 @@ Developer course.
 
 | | |
 |---|---|
-| Live site | Add the Firebase Hosting URL after deployment |
-| GitHub repository | https://github.com/itaygoldenberg/cryptonite |
+| Live site | https://cryptonite-c953a.web.app |
+| GitHub repository | https://github.com/itaygoldenberg/Cryptonite |
 | Author | https://www.linkedin.com/in/itay-goldenberg/ |
 
 ## Features
@@ -115,54 +115,75 @@ before generating its encrypted project value.
 
 ## Running locally
 
-Install dependencies:
+Install the frontend dependencies:
 
-```bash
+~~~bash
 npm install
-```
+~~~
 
-The public API URLs have defaults, so a `.env` file is optional. To override
-them locally, use these variables:
+The frontend sends API requests to the same-origin /api Vercel Function.
 
-```text
-VITE_COINS_API
-VITE_COIN_DETAILS_URL
-VITE_COINCAP_BASE_URL
-VITE_OPENAI_URL
-```
+For local API testing, use Vercel locally:\r\n\r\n~~~bash\r\nvercel dev\r\n~~~
 
-API keys are not read from `.env`. Generate an obfuscated value locally:
+Run the Vite app in another terminal:
 
-```bash
-npm run encrypt:key -- CoinCap
-npm run encrypt:key -- OpenAI
-```
-
-Each command asks for the original key and prints one value that starts with
-`enc:`. Open `src/utils/app-config.ts` and replace only the empty value inside
-the matching quotes:
-
-```ts
-const ENCRYPTED_COINCAP_API_KEY = "enc: PASTE_THE_COINCAP_OUTPUT_HERE";
-const ENCRYPTED_OPENAI_API_KEY = "enc: PASTE_THE_OPENAI_OUTPUT_HERE";
-```
-
-Do not paste original API keys into the source code. Keep the `enc:` values in
-these two constants, then start the app or build it normally. This lets the
-project run after it is cloned or extracted from a ZIP, while keeping original
-keys out of `.env`, GitHub and the submission archive.
-
-This client-side approach prevents an original key from being stored as plain
-text in the repository. It is not equivalent to server-side secret storage,
-because a determined user can inspect a running browser application.
-
-Start the development server:
-
-```bash
+~~~bash
 npm run dev
-```
+~~~
 
-The application runs at `http://localhost:5173`.
+The application runs at http://localhost:5173.
+
+## Vercel API setup
+
+The API runs in a Vercel Function. API keys are stored in Vercel Environment
+Variables and are never placed in React source code, the browser bundle, GitHub
+or the ZIP.
+
+Install the Vercel CLI:
+
+~~~bash
+npm install -g vercel
+vercel login
+~~~
+
+From the project root, connect the project and deploy:
+
+~~~bash
+vercel
+~~~
+
+In the Vercel dashboard, open Project Settings > Environment Variables and add
+these Production variables:
+
+~~~text
+COINCAP_API_KEY
+OPENAI_API_KEY
+~~~
+
+Enter the real values only in the Vercel dashboard. Do not use a VITE_ prefix
+for secret variables because VITE_ values are exposed to the browser.
+
+Deploy again after adding the variables:
+
+~~~bash
+vercel --prod
+~~~
+
+The live API architecture is:
+
+~~~text
+Browser -> same-origin /api Vercel Function -> CoinGecko/CoinCap/OpenAI
+~~~
+
+The Function caches CoinGecko and CoinCap responses and requests CoinCap at most
+once every five seconds for Reports. Vercel Hobby Functions are free within the
+plan limits. The Hobby plan is intended for personal, non-commercial projects.
+
+For local testing, use:
+
+~~~bash
+vercel dev
+~~~
 
 ## Production build
 
@@ -179,3 +200,7 @@ Itay Goldenberg
 
 - GitHub: https://github.com/itaygoldenberg
 - LinkedIn: https://www.linkedin.com/in/itay-goldenberg/
+
+
+
+

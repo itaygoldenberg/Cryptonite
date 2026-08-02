@@ -1,37 +1,21 @@
-import axios from "axios";
+﻿import axios from "axios";
 import { AiAdviceModel } from "../models/ai-advice-model";
 import type { AiMarketData } from "../models/ai-market-data-model";
 import { appConfig } from "../utils/app-config";
 
 const AI_ADVICE_CACHE_PREFIX = "aiAdvice:";
 
-// Handles the communication with the ChatGPT API.
+// Handles AI advice requests through the Vercel API.
 class AiService {
 
-    // Sends the coin market data to ChatGPT and returns its buying recommendation.
+    // Sends market data to the server and returns the cached or fresh recommendation.
     public async getAdvice(coinData: AiMarketData): Promise<AiAdviceModel> {
-
-        const prompt = "You are a crypto analyst. Based on the following data, decide whether this coin is worth buying. "
-            + "Answer in JSON with exactly two fields: recommendation (one short sentence) and explanation (one paragraph). "
-            + "Data: " + JSON.stringify(coinData);
-
-        // response_format forces valid JSON, otherwise the model may answer in free text
-        // and the parsing below would fail.
-        const body = {
-            model: "gpt-4o-mini",
-            messages: [{ role: "user", content: prompt }],
-            response_format: { type: "json_object" }
-        };
-
-        const options = { headers: { Authorization: "Bearer " + appConfig.openaiKey } };
-
         try {
-            const response = await axios.post(appConfig.openaiUrl, body, options);
-
-            // The answer arrives as a JSON string inside the first choice of the response.
-            const answer = JSON.parse(response.data.choices[0].message.content);
-            const advice = new AiAdviceModel(answer.recommendation, answer.explanation);
-
+            const response = await axios.post<{ recommendation: string; explanation: string }>(
+                appConfig.apiBaseUrl + "/ai/advice",
+                coinData
+            );
+            const advice = new AiAdviceModel(response.data.recommendation, response.data.explanation);
             this.writeCache(coinData.name, advice);
             return advice;
         }
@@ -71,7 +55,7 @@ class AiService {
             return;
         }
     }
-
 }
 
 export const aiService = new AiService();
+
