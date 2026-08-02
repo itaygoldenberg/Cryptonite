@@ -138,34 +138,62 @@ vercel dev
 
 Vercel prints the local URL, normally `http://localhost:3000`.
 
-### Optional encrypted-key workflow for the evaluator
+### Local run with encrypted API keys
 
-The project also keeps the instructor-approved local obfuscation workflow. Generate
-one encrypted value for each local API key without writing the original key to a file:
+This optional workflow lets the evaluator run the complete app with `npm start`,
+without a `.env` file and without storing the original CoinCap or OpenAI key in the
+source code.
+
+1. Generate the encrypted CoinCap value:
 
 ~~~bash
 npm run encrypt:key -- CoinCap
+~~~
+
+When the terminal displays `Paste the API key:`, paste the original CoinCap key and
+press Enter. The command prints a new value beginning with `enc:`. Copy that entire
+value, including the `enc:` prefix.
+
+2. Generate the encrypted OpenAI value:
+
+~~~bash
 npm run encrypt:key -- OpenAI
 ~~~
 
-Each command asks for the original key and prints one value beginning with `enc:`.
-Open `src/utils/app-config.ts` and replace the complete placeholder inside the
-matching quotes:
+Paste the original OpenAI key at the prompt, press Enter, and copy the complete
+printed value beginning with `enc:`.
+
+3. Open `src/utils/app-config.ts` and find these exact placeholder lines:
 
 ~~~ts
-const ENCRYPTED_COINCAP_API_KEY = "enc:PASTE_THE_COINCAP_OUTPUT_HERE";
-const ENCRYPTED_OPENAI_API_KEY = "enc:PASTE_THE_OPENAI_OUTPUT_HERE";
+const ENCRYPTED_COINCAP_API_KEY = "enc:  ";
+const ENCRYPTED_OPENAI_API_KEY = "enc:  ";
 ~~~
 
-Do not paste the original keys into source code. After adding the generated values,
-run `npm start`; Vite opens the app at `http://localhost:5173` and Development mode
-uses the matching local CoinCap and OpenAI key. CoinGecko remains keyless.
+4. Replace only the text between the quotation marks with the matching generated
+value. The result should look like this:
 
-This XOR-based obfuscation is included only for local evaluation and is reversible;
-it is not a replacement for server-side secret storage. Keep the placeholders in
-GitHub, Production builds and the submitted ZIP. The evaluator should generate values
-with their own keys on their own computer.
+~~~ts
+const ENCRYPTED_COINCAP_API_KEY = "enc:GENERATED_COINCAP_VALUE";
+const ENCRYPTED_OPENAI_API_KEY = "enc:GENERATED_OPENAI_VALUE";
+~~~
 
+The command output already contains `enc:`, so do not add a second `enc:` prefix.
+Do not paste either original key directly into `app-config.ts`.
+
+5. Start the local application:
+
+~~~bash
+npm start
+~~~
+
+Vite opens the app at `http://localhost:5173`. In Development mode, the application
+decrypts the two local values in the `AppConfig` constructor and uses the restored
+keys for CoinCap Reports and OpenAI Advice. CoinGecko does not require a key.
+
+6. Before committing, publishing or creating a submission ZIP, restore both lines to
+`"enc:  "`. The generated strings are reversible obfuscation intended only for local
+evaluation; Production continues to use the protected Vercel Environment Variables.
 ## Vercel API setup
 
 The API runs in a Vercel Function. Production API keys are stored in Vercel
