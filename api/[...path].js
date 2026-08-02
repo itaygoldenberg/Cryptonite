@@ -25,9 +25,8 @@ export default async function handler(request, response) {
         return;
     }
 
-    const pathValue = request.query.path;
-    const pathParts = Array.isArray(pathValue) ? pathValue : [pathValue];
-    const path = "/" + pathParts.filter(Boolean).join("/");
+    const requestUrl = new URL(request.url, "http://localhost");
+    const path = requestUrl.pathname.replace(/^\/api/, "").replace(/\/$/, "") || "/";
 
     try {
         if (request.method === "GET" && path === "/coins") {
@@ -190,3 +189,4 @@ function isAiMarketData(value) {
         value[field] === null || typeof value[field] === "number"
     );
 }
+
