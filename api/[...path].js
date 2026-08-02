@@ -11,7 +11,7 @@ let coinsCache = null;
 let pricesCache = null;
 const detailsCache = new Map();
 
-export default async function handler(request, response) {
+export async function handleApiRequest(request, response, forcedPath) {
     const origin = request.headers.origin;
     if (origin && ALLOWED_ORIGINS.has(origin)) {
         response.setHeader("Access-Control-Allow-Origin", origin);
@@ -26,7 +26,7 @@ export default async function handler(request, response) {
     }
 
     const requestUrl = new URL(request.url, "http://localhost");
-    const path = requestUrl.pathname.replace(/^\/api/, "").replace(/\/$/, "") || "/";
+    const path = forcedPath || requestUrl.pathname.replace(/^\/api/, "").replace(/\/$/, "") || "/";
 
     try {
         if (request.method === "GET" && path === "/coins") {
@@ -188,5 +188,10 @@ function isAiMarketData(value) {
     return typeof value.name === "string" && fields.every(field =>
         value[field] === null || typeof value[field] === "number"
     );
+}
+
+
+export default function handler(request, response) {
+    return handleApiRequest(request, response);
 }
 
