@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" width="1600" height="520">
+
+    <defs>
+        <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#22d3ee" />
+            <stop offset="28%" stop-color="#60a5fa" />
+            <stop offset="56%" stop-color="#8b5cf6" />
+            <stop offset="78%" stop-color="#10b981" />
+            <stop offset="100%" stop-color="#22d3ee" />
+        </linearGradient>
+
+        <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18" />
+            <stop offset="46%" stop-color="#6366f1" stop-opacity="0.08" />
+            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+        </linearGradient>
+
+        <filter id="soft" x="-20%" y="-40%" width="140%" height="180%">
+            <feGaussianBlur stdDeviation="7" result="b" />
+            <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+    </defs>
+
+    <path d="M0 326 C72 301 119 281 188 310 C253 338 296 264 365 246 C436 228 480 278 542 244 C612 205 658 158 727 194 C786 224 835 169 898 132 C964 94 1013 179 1070 194 C1132 212 1176 174 1232 204 C1293 238 1328 266 1390 229 C1451 193 1501 240 1552 218 C1577 208 1591 260 1600 326 L1600 520 L0 520 Z"
+        fill="url(#area)" />
+
+    <path id="price-line" pathLength="1" d="M0 326 C72 301 119 281 188 310 C253 338 296 264 365 246 C436 228 480 278 542 244 C612 205 658 158 727 194 C786 224 835 169 898 132 C964 94 1013 179 1070 194 C1132 212 1176 174 1232 204 C1293 238 1328 266 1390 229 C1451 193 1501 240 1552 218 C1577 208 1591 260 1600 326"
+        fill="none" stroke="url(#stroke)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+        filter="url(#soft)" opacity="0.48" />
+
+    <path pathLength="1" d="M0 326 C72 301 119 281 188 310 C253 338 296 264 365 246 C436 228 480 278 542 244 C612 205 658 158 727 194 C786 224 835 169 898 132 C964 94 1013 179 1070 194 C1132 212 1176 174 1232 204 C1293 238 1328 266 1390 229 C1451 193 1501 240 1552 218 C1577 208 1591 260 1600 326"
+        fill="none" stroke="url(#stroke)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="0.16 0.84" stroke-dashoffset="0" filter="url(#soft)" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-1" dur="6s" repeatCount="indefinite" />
+    </path>
+
+    <g fill="#67e8f9" opacity="0.62">
+        <circle cx="188" cy="310" r="3.5" />
+        <circle cx="365" cy="246" r="3.5" />
+        <circle cx="542" cy="244" r="3.5" />
+        <circle cx="727" cy="194" r="3.5" />
+        <circle cx="898" cy="132" r="3.5" />
+        <circle cx="1070" cy="194" r="3.5" />
+        <circle cx="1232" cy="204" r="3.5" />
+        <circle cx="1390" cy="229" r="3.5" />
+    </g>
+
+</svg>

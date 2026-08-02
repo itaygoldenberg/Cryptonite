@@ -1,0 +1,188 @@
+.CoinCard {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: rgba(12, 29, 48, 0.72);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+  transition: all 0.35s var(--ease);
+}
+
+.CoinCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.07) 50%,
+    transparent 100%);
+  transition: left 0.7s var(--ease);
+}
+
+.CoinCard:hover::before {
+  left: 110%;
+}
+
+.CoinCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.18), transparent 65%);
+  transition: opacity 0.35s var(--ease);
+}
+
+.CoinCard:hover::after {
+  opacity: 1;
+}
+
+.CoinCard:hover {
+  transform: translateY(-6px);
+  background: rgba(19, 46, 72, 0.82);
+  border-color: var(--glass-border-glow);
+  box-shadow: var(--shadow-lift);
+}
+
+.CoinCard img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
+}
+
+.CoinCard:hover img {
+  transform: scale(1.12) translateY(-2px);
+  filter: drop-shadow(0 6px 20px rgba(56, 189, 248, 0.45));
+}
+
+.CoinCard .symbol {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+}
+
+.CoinCard .name {
+  margin-top: -0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.CoinCard button {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+}
+
+.CoinCard .details {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(4, 12, 23, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--accent-cyan);
+  animation: detailsIn 0.3s var(--ease);
+}
+
+.CoinCard .details span:nth-child(2) {
+  color: var(--accent-purple);
+}
+
+.CoinCard .details span:nth-child(3) {
+  color: var(--accent-green);
+}
+
+.CoinCard .details-error {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--accent-red, #f87171);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@keyframes detailsIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.CoinCard .switch {
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
+
+.CoinCard input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 48px;
+  height: 26px;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  background: rgba(99, 125, 151, 0.2);
+  border: 1px solid rgba(148, 190, 220, 0.2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  transition: all 0.3s var(--ease);
+}
+
+.CoinCard input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: all 0.3s var(--ease);
+}
+
+.CoinCard input[type="checkbox"]:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.CoinCard input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, var(--accent-green) 0%, #0f9f7a 100%);
+  border-color: rgba(32, 201, 151, 0.6);
+  box-shadow: 0 0 16px rgba(32, 201, 151, 0.48);
+}
+
+.CoinCard input[type="checkbox"]:checked::before {
+  transform: translateX(22px);
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}

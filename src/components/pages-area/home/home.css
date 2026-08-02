@@ -1,0 +1,68 @@
+.Home {
+  width: 100%;
+}
+
+.Home .home-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.15rem 1.15rem;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.14);
+}
+
+.Home .home-eyebrow {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--accent-cyan);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+}
+
+.Home .home-heading h2 {
+  color: var(--text-primary);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 750;
+}
+
+.Home .home-heading p {
+  margin-top: 0.3rem;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.Home .home-count {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.Home .coins-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 1.4rem;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+
+  .Home .home-heading {
+    align-items: flex-start;
+  }
+
+  .Home .home-heading p {
+    font-size: 0.76rem;
+  }
+
+  .Home .coins-list {
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: 1rem;
+  }
+
+}

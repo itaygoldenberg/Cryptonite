@@ -1,0 +1,136 @@
+.SearchBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  left: 0;
+  right: 0;
+  z-index: 120;
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: 0.45rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 0.95rem;
+  background: rgba(7, 14, 25, 0.97);
+  box-shadow: 0 1.2rem 2.8rem rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(34, 211, 238, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.search-result {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.search-result:hover {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.14), rgba(81, 92, 220, 0.12));
+}
+
+.search-result img {
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: contain;
+}
+
+.search-result span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.1rem;
+}
+
+.search-result strong {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.search-result small {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-empty {
+  margin: 0;
+  padding: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.SearchBox::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
+}
+
+.SearchBox:focus-within::before {
+  opacity: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
+}
+
+.SearchBox input {
+  width: 258px;
+  min-height: 42px;
+  padding: 9px 18px 9px 40px;
+  border-radius: var(--radius-pill);
+  background: rgba(8, 16, 28, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.17);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 7px 18px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  transition: all 0.3s var(--ease);
+}
+
+.SearchBox input::placeholder {
+  color: var(--text-muted);
+}
+
+.SearchBox input:focus {
+  width: 300px;
+  background: rgba(10, 20, 34, 0.92);
+  border-color: rgba(34, 211, 238, 0.68);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.09), 0 0 24px rgba(34, 211, 238, 0.2);
+}
+
+@media (max-width: 960px) {
+
+  .SearchBox {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .SearchBox input,
+  .SearchBox input:focus {
+    width: 100%;
+    max-width: 340px;
+  }
+
+}
