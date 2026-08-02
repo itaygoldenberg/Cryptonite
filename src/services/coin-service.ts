@@ -9,7 +9,7 @@ const COINS_CACHE_MINUTES = 5;
 const COINS_MIN_COUNT = 100;
 const DETAILS_CACHE_PREFIX = "coinDetails:";
 const AI_DATA_CACHE_PREFIX = "aiMarketData:";
-const REPORT_API_INTERVAL_MS = 5000;
+const REPORT_API_INTERVAL_MS = 1000;
 
 export type LivePriceStatus = "connecting" | "open" | "closed" | "fallback";
 
@@ -108,7 +108,7 @@ class CoinService {
         return request;
     }
 
-    // Polls the protected Vercel endpoint every five seconds without exposing a key.
+    // Polls Vercel once per second while its server cache limits CoinCap requests.
     public subscribeToLivePrices(
         symbols: string[],
         onPrices: (prices: Record<string, number>) => void,

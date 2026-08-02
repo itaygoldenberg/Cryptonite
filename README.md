@@ -11,7 +11,7 @@ Developer course.
 
 | | |
 |---|---|
-| Live site | https://cryptonite-c953a.web.app |
+| Live site | https://cryptonite-amber.vercel.app |
 | GitHub repository | https://github.com/itaygoldenberg/Cryptonite |
 | Author | https://www.linkedin.com/in/itay-goldenberg/ |
 
@@ -43,9 +43,9 @@ sixth coin opens a replacement dialog. The selected coin IDs are stored in
 
 ### Reports page
 
-Reports displays one live chart containing all selected coins. Prices are refreshed
-once per second, and the chart keeps the latest twenty readings. Polling stops
-after three consecutive failures while the collected data remains visible.
+Reports displays one live chart containing all selected coins. The chart checks for
+new data once per second and keeps the latest twenty readings. CoinCap requests are
+batched for all selected coins, and saved readings remain visible after API failures.
 
 ### AI Advice page
 
@@ -78,10 +78,12 @@ contact links.
 - Axios
 - Recharts
 - Vite
+- Vercel Functions
 
 ## Project structure
 
 ```text
+api/                    Protected Vercel API routes
 src/
 |-- components/
 |   |-- coins-area/      CoinCard, SearchBox, LimitDialog
@@ -91,6 +93,7 @@ src/
 |-- redux/               coins-slice, selected-slice, search-slice, store
 |-- services/            CoinService, AiService
 |-- utils/               AppConfig
+vercel.json             Production routing and SPA fallback
 ```
 
 Redux stores the coin list, selected coins and search term globally so navigation
@@ -111,7 +114,7 @@ price provider. Prices are matched by symbol because CoinGecko and CoinCap use
 different coin ID formats.
 
 Create a CoinCap API key from the [CoinCap Pro Dashboard](https://pro.coincap.io/dashboard)
-before generating its encrypted project value.
+and store it only as the `COINCAP_API_KEY` Vercel Environment Variable.
 
 ## Running locally
 
@@ -123,28 +126,22 @@ npm install
 
 The frontend sends API requests to the same-origin /api Vercel Function.
 
-For local API testing, use Vercel locally:\r\n\r\n~~~bash\r\nvercel dev\r\n~~~
-
-Run the Vite app in another terminal:
+For the complete local application, install the Vercel CLI and run:
 
 ~~~bash
-npm run dev
+npm install -g vercel
+vercel login
+vercel dev
 ~~~
 
-The application runs at http://localhost:5173.
+Vercel prints the local URL, normally `http://localhost:3000`. For frontend-only
+development, `npm start` runs Vite on `http://localhost:5173`.
 
 ## Vercel API setup
 
 The API runs in a Vercel Function. API keys are stored in Vercel Environment
 Variables and are never placed in React source code, the browser bundle, GitHub
 or the ZIP.
-
-Install the Vercel CLI:
-
-~~~bash
-npm install -g vercel
-vercel login
-~~~
 
 From the project root, connect the project and deploy:
 
@@ -179,11 +176,6 @@ The Function caches CoinGecko and CoinCap responses and requests CoinCap at most
 once every five seconds for Reports. Vercel Hobby Functions are free within the
 plan limits. The Hobby plan is intended for personal, non-commercial projects.
 
-For local testing, use:
-
-~~~bash
-vercel dev
-~~~
 
 ## Production build
 
@@ -192,7 +184,7 @@ npm run build
 ```
 
 The production files are generated in the `dist` folder. Do not include
-`node_modules`, `.env` or `dist` in the submitted ZIP archive.
+`node_modules`, `.env`, `dist` or `.git` in the submitted ZIP archive.
 
 ## Author
 

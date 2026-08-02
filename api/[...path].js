@@ -2,7 +2,7 @@
 const COINCAP_URL = "https://rest.coincap.io/v3";
 const OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 const ALLOWED_ORIGINS = new Set([
-    "https://cryptonite-c953a.web.app",
+    "https://cryptonite-amber.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173"
 ]);
@@ -47,6 +47,7 @@ export async function handleApiRequest(request, response, forcedPath) {
                 return;
             }
 
+            response.setHeader("CDN-Cache-Control", "s-maxage=5, stale-while-revalidate=30");
             response.status(200).json(await getPrices(symbols));
             return;
         }
