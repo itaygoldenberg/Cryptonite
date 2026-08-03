@@ -1,89 +1,299 @@
-<div align="center">
+<p align="center">
+  <img src="./public/favicon.svg" alt="Cryptonite logo" width="96" height="96" />
+</p>
 
-  # 💎 Cryptonite
-  ### Real-Time Cryptocurrency Analytics & AI Market Intelligence
+<h1 align="center">Cryptonite</h1>
 
-  A modern, high-performance React & TypeScript Single Page Application (SPA) delivering live market data for the top 100 cryptocurrencies, real-time charting, and AI-powered buying insights.
+<p align="center">
+  <strong>Live cryptocurrency intelligence, real-time reports and AI-powered market advice.</strong>
+</p>
 
-  [![Live Site](https://img.shields.io/badge/LIVE_DEMO-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cryptonite-amber.vercel.app)
-  [![GitHub Repo](https://img.shields.io/badge/GITHUB-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/itaygoldenberg/Cryptonite)
-  [![LinkedIn](https://img.shields.io/badge/LINKEDIN-Itay_Goldenberg-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/itay-goldenberg/)
+<p align="center">
+  A production-ready React and TypeScript single page application for exploring the top 100 cryptocurrencies.
+</p>
 
-  <br />
+<p align="center">
+  <a href="https://cryptonite-amber.vercel.app">
+    <img src="https://img.shields.io/badge/Live_Demo-Open_App-10b981?style=for-the-badge&logo=vercel&logoColor=white" alt="Open live demo" />
+  </a>
+  <a href="https://github.com/itaygoldenberg/Cryptonite">
+    <img src="https://img.shields.io/badge/Source-GitHub-111827?style=for-the-badge&logo=github&logoColor=white" alt="View source on GitHub" />
+  </a>
+</p>
 
-  ![React](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-  ![TypeScript](https://img.shields.io/badge/TypeScript_5-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-  ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-593D88?style=for-the-badge&logo=redux&logoColor=white)
-  ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-  ![Vercel Serverless](https://img.shields.io/badge/Vercel_Functions-000000?style=for-the-badge&logo=vercel&logoColor=white)
-  ![OpenAI API](https://img.shields.io/badge/OpenAI_GPT-412991?style=for-the-badge&logo=openai&logoColor=white)
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react&logoColor=07111f" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-6-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 6" />
+  <img src="https://img.shields.io/badge/Redux_Toolkit-2-764abc?style=flat-square&logo=redux&logoColor=white" alt="Redux Toolkit 2" />
+  <img src="https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite&logoColor=white" alt="Vite 8" />
+  <img src="https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Deployed on Vercel" />
+</p>
 
-  <p align="center">
-    <i>Developed as Project #2 of the John Bryce Full Stack Web Development Program.</i>
-  </p>
+> [!NOTE]
+> This project was created as the second project of the John Bryce Full Stack Web Developer course.
 
-</div>
+## Overview
 
----
+Cryptonite presents live data about the top 100 cryptocurrencies, draws real-time price reports, and provides AI-powered buying advice in one responsive single page application.
 
-## 📑 Table of Contents
+| Project detail | Implementation |
+|---|---|
+| Market coverage | Top 100 cryptocurrencies by market capitalization |
+| Live reporting | Up to five selected coins with the latest 20 readings |
+| State management | Redux Toolkit with persistent selections in `localStorage` |
+| API security | Same-origin Vercel Functions keep Production secrets outside the browser bundle |
+| Deployment | Vercel with SPA routing and protected API endpoints |
 
-- [Overview & Quick Links](#-overview--quick-links)
-- [Key Features](#-key-features)
-- [Tech Stack](#-tech-stack)
-- [Project Architecture & Structure](#-project-architecture--structure)
-- [API Services & Endpoints](#-api-services--endpoints)
-- [Local Development & Setup](#-local-development--setup)
-- [Key Obfuscation & Security Workflow](#-key-obfuscation--security-workflow)
-- [Vercel Deployment & Environment Variables](#-vercel-deployment--environment-variables)
-- [Production Build](#-production-build)
-- [Author](#-author)
+## Contents
 
----
+- [Links](#links)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Technologies](#technologies)
+- [Project structure](#project-structure)
+- [APIs](#apis)
+- [Running locally](#running-locally)
+- [Vercel API setup](#vercel-api-setup)
+- [Production build](#production-build)
+- [Author](#author)
 
-## 🔗 Overview & Quick Links
+## Links
 
 | Resource | Link |
-| :--- | :--- |
-| **Live Web Application** | [https://cryptonite-amber.vercel.app](https://cryptonite-amber.vercel.app) |
-| **GitHub Repository** | [https://github.com/itaygoldenberg/Cryptonite](https://github.com/itaygoldenberg/Cryptonite) |
-| **Developer Portfolio / LinkedIn** | [https://www.linkedin.com/in/itay-goldenberg/](https://www.linkedin.com/in/itay-goldenberg/) |
+|---|---|
+| Live application | [cryptonite-amber.vercel.app](https://cryptonite-amber.vercel.app) |
+| GitHub repository | [itaygoldenberg/Cryptonite](https://github.com/itaygoldenberg/Cryptonite) |
+| Author | [Itay Goldenberg on LinkedIn](https://www.linkedin.com/in/itay-goldenberg/) |
 
----
+## Features
 
-## ✨ Key Features
+### Navigation
 
-### 🧭 Navigation & Global Search
-* Features seamless client-side routing between **Home**, **Reports**, **AI Advice**, and **About** pages.
-* Includes a global, case-insensitive instant search input located in the top navigation bar.
+The application includes Home, Reports, AI Advice and About pages. The navbar also includes a case-insensitive coin search field.
 
-### 🪙 Home Page & Live Filtering
-* Displays live market cards for the top 100 cryptocurrencies.
-* Each card includes the coin image, symbol, full name, an interactive **More Info** toggle, and a selection switch.
-* **Zero Network Overhead**: Search queries filter the client-side loaded dataset instantly without issuing additional external API requests.
+### Home page
 
-### ℹ️ More Info Dynamic Fetching
-* Displays live conversion rates in **USD ($)**, **EUR (€)**, and **ILS (₪)**.
-* Fetches financial details once per coin on demand and caches the data directly in the local card component state to prevent redundant requests.
+The Home page displays the top 100 coins. Each card shows the coin image, symbol, name, a More Info button and a selection switch.
 
-### 📌 Selected Coins & State Persistence
-* Users can select up to **5 cryptocurrencies** to analyze across the Reports and AI Advice dashboards.
-* Selecting a 6th coin triggers a interactive modal replacement dialog.
-* Selected coin identifiers persist across browser sessions using `localStorage`.
+The search filters the already loaded list locally by coin name or symbol, so typing does not create additional API requests.
 
-### 📈 Reports Page (Real-Time Charting)
-* Renders a live multi-axis chart featuring all selected cryptocurrencies powered by Recharts.
-* Polls new market readings once per second, maintaining a rolling window of the latest **20 readings**.
-* Batches CoinCap network requests for all active coins simultaneously and maintains existing visual trends during temporary API network failures.
+### More Info
 
-### 🤖 AI Advice Page (Market Intelligence)
-* Aggregates market data for selected coins and communicates directly with the OpenAI ChatGPT API.
-* Submits structured market telemetry per coin:
-  ```text
-  • name
-  • current_price_usd
-  • market_cap_usd
-  • volume_24h_usd
-  • price_change_percentage_30d_in_currency
-  • price_change_percentage_60d_in_currency
-  • price_change_percentage_200d_in_currency
+More Info displays the current price in USD, EUR and ILS. Details are loaded once per coin and then kept in the card state.
+
+### Selected coins
+
+Users can select up to five coins for the Reports and AI Advice pages. Selecting a sixth coin opens a replacement dialog. The selected coin IDs are stored in `localStorage`, so the switches remain selected after the browser is reopened.
+
+### Reports page
+
+Reports displays one live chart containing all selected coins. The chart checks for new data once per second and keeps the latest twenty readings. CoinCap requests are batched for all selected coins, and saved readings remain visible after API failures.
+
+### AI Advice page
+
+The AI Advice page lists the selected coins. Each coin can be sent to the ChatGPT API with the following market fields:
+
+```text
+name
+current_price_usd
+market_cap_usd
+volume_24h_usd
+price_change_percentage_30d_in_currency
+price_change_percentage_60d_in_currency
+price_change_percentage_200d_in_currency
+```
+
+The response contains a short recommendation and an explanation paragraph.
+
+### About page
+
+The About page includes project information, technologies, a personal photo and contact links.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Browser["React + TypeScript SPA"] --> API["Same-origin /api routes"]
+    API --> CoinGecko["CoinGecko"]
+    API --> CoinCap["CoinCap"]
+    API --> OpenAI["OpenAI"]
+    Browser <--> Redux["Redux Toolkit"]
+    Browser <--> Storage["localStorage"]
+```
+
+Production secrets are read only by the Vercel Functions. They are not included in the React source, browser bundle, GitHub repository or submission ZIP.
+
+## Technologies
+
+| Area | Technologies |
+|---|---|
+| Frontend | React 19, TypeScript 6, CSS |
+| State and routing | Redux Toolkit, React Router |
+| Data and visualization | Axios, Recharts |
+| Tooling | Vite |
+| Hosting and API layer | Vercel, Vercel Functions |
+
+## Project structure
+
+```text
+api/                    Protected Vercel API routes
+scripts/                Local API-key obfuscation helper
+src/
+|-- components/
+|   |-- coins-area/      CoinCard, SearchBox, LimitDialog
+|   |-- layout-area/     Layout, Header, Menu, Routing
+|   |-- pages-area/      Home, Reports, AiAdvice, About, Page404
+|-- models/              CoinModel, CoinDetailsModel, AiAdviceModel
+|-- redux/               coins-slice, selected-slice, search-slice, store
+|-- services/            CoinService, AiService, LocalApiService
+|-- utils/               AppConfig and local key decryption
+vercel.json             Production routing and SPA fallback
+```
+
+Redux stores the coin list, selected coins and search term globally so navigation between pages does not require another coin-list request.
+
+## APIs
+
+| Purpose | Provider |
+|---|---|
+| Top 100 coins | CoinGecko `/coins/markets` |
+| More Info details | CoinGecko `/coins/{id}` |
+| AI market data | CoinGecko `/coins/{id}` |
+| Live report prices | CoinCap `/assets` |
+| AI recommendation | OpenAI `/v1/chat/completions` |
+
+CoinCap is used for the live report and was approved as the project's real-time price provider. Prices are matched by symbol because CoinGecko and CoinCap use different coin ID formats.
+
+Create a CoinCap API key from the [CoinCap Pro Dashboard](https://pro.coincap.io/dashboard). For Production, store the raw key only as the `COINCAP_API_KEY` Vercel Environment Variable.
+
+## Running locally
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/itaygoldenberg/Cryptonite.git
+cd Cryptonite
+npm install
+```
+
+### Full Vercel development
+
+The recommended local setup uses the same protected API architecture as Production. Install the Vercel CLI and run:
+
+```bash
+npm install -g vercel
+vercel login
+vercel dev
+```
+
+Vercel prints the local URL, normally `http://localhost:3000`.
+
+### Local run with encrypted API keys
+
+This optional workflow lets the evaluator run the complete app with `npm start`, without a `.env` file and without storing the original CoinCap or OpenAI key in the source code.
+
+> [!WARNING]
+> The generated `enc:` strings are reversible obfuscation for local evaluation. Never commit them, publish them or include them in a submission ZIP.
+
+1. Generate the encrypted CoinCap value:
+
+   ```bash
+   npm run encrypt:key -- CoinCap
+   ```
+
+   When the terminal displays `Paste the API key:`, paste the original CoinCap key and press Enter. The command prints a new value beginning with `enc:`. Copy that entire value, including the `enc:` prefix.
+
+2. Generate the encrypted OpenAI value:
+
+   ```bash
+   npm run encrypt:key -- OpenAI
+   ```
+
+   Paste the original OpenAI key at the prompt, press Enter, and copy the complete printed value beginning with `enc:`.
+
+3. Open `src/utils/app-config.ts` and find these exact placeholder lines:
+
+   ```ts
+   const ENCRYPTED_COINCAP_API_KEY = "enc:  ";
+   const ENCRYPTED_OPENAI_API_KEY = "enc:  ";
+   ```
+
+4. Replace only the text between the quotation marks with the matching generated value. The result should look like this:
+
+   ```ts
+   const ENCRYPTED_COINCAP_API_KEY = "enc:GENERATED_COINCAP_VALUE";
+   const ENCRYPTED_OPENAI_API_KEY = "enc:GENERATED_OPENAI_VALUE";
+   ```
+
+   The command output already contains `enc:`, so do not add a second `enc:` prefix. Do not paste either original key directly into `app-config.ts`.
+
+5. Start the local application:
+
+   ```bash
+   npm start
+   ```
+
+   Vite opens the app at `http://localhost:5173`. In Development mode, the application decrypts the two local values in the `AppConfig` constructor and uses the restored keys for CoinCap Reports and OpenAI Advice. CoinGecko does not require a key.
+
+6. Before committing, publishing or creating a submission ZIP, restore both lines to `"enc:  "`. The generated strings are reversible obfuscation intended only for local evaluation; Production continues to use the protected Vercel Environment Variables.
+
+## Vercel API setup
+
+The API runs in a Vercel Function. Production API keys are stored in Vercel Environment Variables and are never placed in React source code, the browser bundle, GitHub or the ZIP. Vercel uses raw server-side values, not the optional `enc:` values.
+
+From the project root, connect the project and deploy:
+
+```bash
+vercel
+```
+
+In the Vercel dashboard, open **Project Settings > Environment Variables** and add these Production variables:
+
+```text
+COINCAP_API_KEY
+OPENAI_API_KEY
+```
+
+Enter the real values only in the Vercel dashboard. Do not use a `VITE_` prefix for secret variables because `VITE_` values are exposed to the browser.
+
+Deploy again after adding the variables:
+
+```bash
+vercel --prod
+```
+
+The live API architecture is:
+
+```text
+Browser -> same-origin /api Vercel Function -> CoinGecko/CoinCap/OpenAI
+```
+
+The Function caches CoinGecko and CoinCap responses and requests CoinCap at most once every five seconds for Reports. Vercel Hobby Functions are free within the plan limits. The Hobby plan is intended for personal, non-commercial projects.
+
+## Production build
+
+```bash
+npm run build
+```
+
+The production files are generated in the `dist` folder. Do not include `node_modules`, `.env`, `dist` or `.git` in the submitted ZIP archive.
+
+## Author
+
+<p align="center">
+  <strong>Itay Goldenberg</strong><br />
+  Full Stack Developer Student
+</p>
+
+<p align="center">
+  <a href="https://github.com/itaygoldenberg">
+    <img src="https://img.shields.io/badge/GitHub-itaygoldenberg-111827?style=for-the-badge&logo=github&logoColor=white" alt="Itay Goldenberg on GitHub" />
+  </a>
+  <a href="https://www.linkedin.com/in/itay-goldenberg/">
+    <img src="https://img.shields.io/badge/LinkedIn-Itay_Goldenberg-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Itay Goldenberg on LinkedIn" />
+  </a>
+</p>
+
+<p align="center">
+  Built as part of the John Bryce Full Stack Web Developer course.
+</p>
