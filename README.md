@@ -133,7 +133,7 @@ Production secrets are read only by the Vercel Functions. They are not included 
   </tr>
   <tr>
     <td align="center"><img src="./docs/icons/axios.svg" alt="Axios logo" width="58" height="52" /><br /><strong>Axios</strong><br /><sub>1.13</sub></td>
-    <td align="center"><img src="./docs/icons/recharts.svg" alt="Official Recharts logo" width="170" height="51" /><br /><sub>3.10</sub></td>
+    <td align="center"><img src="./docs/icons/recharts.svg" alt="Recharts logo" width="52" height="52" /><br /><strong>Recharts</strong><br /><sub>3.10</sub></td>
     <td align="center"><img src="./docs/icons/vite.svg" alt="Vite logo" width="52" height="52" /><br /><strong>Vite</strong><br /><sub>8.1</sub></td>
     <td align="center"><img src="./docs/icons/css3.svg" alt="CSS3 logo" width="52" height="52" /><br /><strong>CSS3</strong><br /><sub>Responsive UI</sub></td>
   </tr>
