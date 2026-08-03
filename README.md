@@ -4,13 +4,13 @@
 
 <p align="center">
   <a href="https://cryptonite-amber.vercel.app">
-    <img src="https://img.shields.io/badge/OPEN_LIVE_APP-10b981?style=for-the-badge&logo=vercel&logoColor=white" alt="Open live application" />
+    <img src="./docs/actions/live.svg" alt="Open the live Cryptonite application" width="250" />
   </a>
   <a href="https://github.com/itaygoldenberg/Cryptonite">
-    <img src="https://img.shields.io/badge/VIEW_SOURCE-111827?style=for-the-badge&logo=github&logoColor=white" alt="View source on GitHub" />
+    <img src="./docs/actions/github.svg" alt="View Cryptonite source code on GitHub" width="250" />
   </a>
   <a href="https://www.linkedin.com/in/itay-goldenberg/">
-    <img src="https://img.shields.io/badge/CONNECT-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn" />
+    <img src="./docs/actions/linkedin.svg" alt="Connect with Itay Goldenberg on LinkedIn" width="250" />
   </a>
 </p>
 
@@ -116,30 +116,34 @@ The About page includes project information, technologies, a personal photo and 
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    Browser["React + TypeScript SPA"] --> API["Same-origin /api routes"]
-    API --> CoinGecko["CoinGecko"]
-    API --> CoinCap["CoinCap"]
-    API --> OpenAI["OpenAI"]
-    Browser <--> Redux["Redux Toolkit"]
-    Browser <--> Storage["localStorage"]
-```
+<p align="center">
+  <img src="./docs/architecture.svg" alt="Animated Cryptonite production architecture" width="100%" />
+</p>
 
 Production secrets are read only by the Vercel Functions. They are not included in the React source, browser bundle, GitHub repository or submission ZIP.
 
 ## Technologies
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=react,ts,redux,vite,css,nodejs,vercel,git&theme=dark" alt="React, TypeScript, Redux, Vite, CSS, Node.js, Vercel and Git" />
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/React_Router-7.18-ca4245?style=flat-square&logo=reactrouter&logoColor=white" alt="React Router 7.18" />
-  <img src="https://img.shields.io/badge/Axios-1.13-5a29e4?style=flat-square&logo=axios&logoColor=white" alt="Axios 1.13" />
-  <img src="https://img.shields.io/badge/Recharts-3.10-22b5bf?style=flat-square" alt="Recharts 3.10" />
-  <img src="https://img.shields.io/badge/Vercel_Functions-Serverless-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel Functions" />
-</p>
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="./docs/icons/react.svg" alt="React logo" width="52" height="52" /><br /><strong>React</strong><br /><sub>19.2</sub></td>
+    <td align="center" width="25%"><img src="./docs/icons/typescript.svg" alt="TypeScript logo" width="52" height="52" /><br /><strong>TypeScript</strong><br /><sub>6.0</sub></td>
+    <td align="center" width="25%"><img src="./docs/icons/redux.svg" alt="Redux logo" width="52" height="52" /><br /><strong>Redux Toolkit</strong><br /><sub>2.12</sub></td>
+    <td align="center" width="25%"><img src="./docs/icons/reactrouter.svg" alt="React Router logo" width="52" height="52" /><br /><strong>React Router</strong><br /><sub>7.18</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="./docs/icons/axios.svg" alt="Axios logo" width="58" height="52" /><br /><strong>Axios</strong><br /><sub>1.13</sub></td>
+    <td align="center"><img src="./docs/icons/recharts.svg" alt="Recharts logo" width="110" height="42" /><br /><strong>Recharts</strong><br /><sub>3.10</sub></td>
+    <td align="center"><img src="./docs/icons/vite.svg" alt="Vite logo" width="52" height="52" /><br /><strong>Vite</strong><br /><sub>8.1</sub></td>
+    <td align="center"><img src="./docs/icons/css3.svg" alt="CSS3 logo" width="52" height="52" /><br /><strong>CSS3</strong><br /><sub>Responsive UI</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="./docs/icons/nodejs.svg" alt="Node.js logo" width="52" height="52" /><br /><strong>Node.js</strong><br /><sub>Serverless runtime</sub></td>
+    <td align="center"><img src="./docs/icons/vercel.svg" alt="Vercel logo" width="52" height="52" /><br /><strong>Vercel Functions</strong><br /><sub>Protected API layer</sub></td>
+    <td align="center"><img src="./docs/icons/git.svg" alt="Git logo" width="52" height="52" /><br /><strong>Git</strong><br /><sub>Version control</sub></td>
+    <td align="center"><img src="./docs/icons/openai.svg" alt="OpenAI logo" width="52" height="52" /><br /><strong>OpenAI API</strong><br /><sub>AI recommendations</sub></td>
+  </tr>
+</table>
 
 | Area | Technologies |
 |---|---|
@@ -178,12 +182,12 @@ Redux stores the coin list, selected coins and search term globally so navigatio
       <sub>Market list, coin details and AI market inputs</sub>
     </td>
     <td align="center" width="33%">
-      <img src="./docs/coincap-logo.png" alt="CoinCap logo" width="70" height="70" /><br />
+      <img src="./docs/icons/coincap.svg" alt="CoinCap logo" width="70" height="70" /><br />
       <strong>CoinCap</strong><br />
       <sub>Batched live USD prices for Reports</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://img.shields.io/badge/OpenAI-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI logo" width="118" /><br />
+      <img src="./docs/icons/openai.svg" alt="OpenAI logo" width="62" height="62" /><br />
       <strong>OpenAI</strong><br />
       <sub>Recommendation and explanation generation</sub>
     </td>
@@ -323,10 +327,10 @@ The production files are generated in the `dist` folder. Do not include `node_mo
 
 <p align="center">
   <a href="https://github.com/itaygoldenberg">
-    <img src="https://img.shields.io/badge/GitHub-itaygoldenberg-111827?style=for-the-badge&logo=github&logoColor=white" alt="Itay Goldenberg on GitHub" />
+    <img src="./docs/actions/github.svg" alt="Itay Goldenberg on GitHub" width="250" />
   </a>
   <a href="https://www.linkedin.com/in/itay-goldenberg/">
-    <img src="https://img.shields.io/badge/LinkedIn-Itay_Goldenberg-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Itay Goldenberg on LinkedIn" />
+    <img src="./docs/actions/linkedin.svg" alt="Itay Goldenberg on LinkedIn" width="250" />
   </a>
 </p>
 
