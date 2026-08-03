@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title description">
+  <title id="title">Cryptonite</title>
+  <desc id="description">Animated cryptocurrency market dashboard banner for the Cryptonite project.</desc>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06111f" />
+      <stop offset="0.52" stop-color="#0b1530" />
+      <stop offset="1" stop-color="#14102d" />
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8" />
+      <stop offset="0.48" stop-color="#8b5cf6" />
+      <stop offset="1" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="marketLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8" />
+      <stop offset="0.55" stop-color="#818cf8" />
+      <stop offset="1" stop-color="#2dd4bf" />
+    </linearGradient>
+    <linearGradient id="marketFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.22" />
+      <stop offset="0.58" stop-color="#6366f1" stop-opacity="0.08" />
+      <stop offset="1" stop-color="#0b1530" stop-opacity="0" />
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="logoGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <clipPath id="frame">
+      <rect x="1" y="1" width="1198" height="358" rx="22" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="360" fill="url(#background)" />
+    <path d="M0 321 L0 295 C80 268 130 310 205 272 S330 207 405 237 S520 297 598 244 S720 181 790 215 S915 277 986 222 S1108 158 1200 193 L1200 360 L0 360 Z" fill="url(#marketFill)" />
+
+    <g opacity="0.32" fill="#8aa1c1">
+      <circle cx="77" cy="251" r="2" />
+      <circle cx="205" cy="272" r="2" />
+      <circle cx="405" cy="237" r="2" />
+      <circle cx="598" cy="244" r="2" />
+      <circle cx="790" cy="215" r="2" />
+      <circle cx="986" cy="222" r="2" />
+      <circle cx="1134" cy="176" r="2" />
+    </g>
+
+    <path id="chartPath" d="M0 295 C80 268 130 310 205 272 S330 207 405 237 S520 297 598 244 S720 181 790 215 S915 277 986 222 S1108 158 1200 193" fill="none" stroke="url(#marketLine)" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#softGlow)">
+      <animate attributeName="stroke-dashoffset" from="1" to="0" dur="2.8s" fill="freeze" />
+    </path>
+
+    <circle r="6" fill="#ecfeff" stroke="#2dd4bf" stroke-width="3" filter="url(#softGlow)">
+      <animateMotion dur="7s" repeatCount="indefinite" path="M0 295 C80 268 130 310 205 272 S330 207 405 237 S520 297 598 244 S720 181 790 215 S915 277 986 222 S1108 158 1200 193" />
+    </circle>
+
+    <g transform="translate(72 54) scale(2.45)" filter="url(#logoGlow)">
+      <path d="M16 1.6 28.1 8.6v14L16 29.6 3.9 22.6v-14z" fill="#0b1530" />
+      <path d="M16 1.6 28.1 8.6v14L16 29.6 3.9 22.6v-14z" fill="none" stroke="url(#edge)" stroke-width="2" stroke-linejoin="round" />
+      <path d="M9.6 20.4 13.4 15.6 16.9 18.4 22.4 11" fill="none" stroke="#38bdf8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="22.4" cy="11" r="2.1" fill="#10b981" />
+    </g>
+
+    <text x="172" y="91" fill="#f8fafc" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="45" font-weight="750" letter-spacing="0">Cryptonite</text>
+    <text x="174" y="123" fill="#8fa4c4" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="2.8">CRYPTO MARKET INTELLIGENCE</text>
+    <text x="73" y="177" fill="#cbd5e1" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="19">Top 100 assets. Real-time reports. AI-powered market advice.</text>
+
+    <g transform="translate(926 59)">
+      <rect width="201" height="46" rx="9" fill="#0d2130" stroke="#1b6d66" />
+      <circle cx="25" cy="23" r="6" fill="#2dd4bf">
+        <animate attributeName="opacity" values="1;0.35;1" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="r" values="6;8;6" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+      <text x="44" y="29" fill="#99f6e4" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1.3">LIVE MARKET DATA</text>
+    </g>
+
+    <g transform="translate(73 207)" font-family="Segoe UI, Inter, Arial, sans-serif">
+      <g>
+        <rect width="150" height="52" rx="8" fill="#0a1728" stroke="#1e3650" />
+        <text x="16" y="22" fill="#7186a5" font-size="11" font-weight="700" letter-spacing="1.2">MARKET</text>
+        <text x="16" y="41" fill="#e2e8f0" font-size="15" font-weight="700">100 coins</text>
+      </g>
+      <g transform="translate(162 0)">
+        <rect width="150" height="52" rx="8" fill="#0a1728" stroke="#1e3650" />
+        <text x="16" y="22" fill="#7186a5" font-size="11" font-weight="700" letter-spacing="1.2">REPORTS</text>
+        <text x="16" y="41" fill="#e2e8f0" font-size="15" font-weight="700">Live readings</text>
+      </g>
+      <g transform="translate(324 0)">
+        <rect width="150" height="52" rx="8" fill="#0a1728" stroke="#1e3650" />
+        <text x="16" y="22" fill="#7186a5" font-size="11" font-weight="700" letter-spacing="1.2">TRACKING</text>
+        <text x="16" y="41" fill="#e2e8f0" font-size="15" font-weight="700">Up to 5 assets</text>
+      </g>
+      <g transform="translate(486 0)">
+        <rect width="150" height="52" rx="8" fill="#0a1728" stroke="#1e3650" />
+        <text x="16" y="22" fill="#7186a5" font-size="11" font-weight="700" letter-spacing="1.2">INSIGHTS</text>
+        <text x="16" y="41" fill="#e2e8f0" font-size="15" font-weight="700">AI advice</text>
+      </g>
+    </g>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="358" rx="22" fill="none" stroke="url(#edge)" stroke-opacity="0.54" stroke-width="2" />
+</svg>

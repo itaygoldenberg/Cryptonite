@@ -1,32 +1,27 @@
 <p align="center">
-  <img src="./public/favicon.svg" alt="Cryptonite logo" width="96" height="96" />
-</p>
-
-<h1 align="center">Cryptonite</h1>
-
-<p align="center">
-  <strong>Live cryptocurrency intelligence, real-time reports and AI-powered market advice.</strong>
-</p>
-
-<p align="center">
-  A production-ready React and TypeScript single page application for exploring the top 100 cryptocurrencies.
+  <img src="./docs/readme-banner.svg" alt="Cryptonite animated market intelligence banner" width="100%" />
 </p>
 
 <p align="center">
   <a href="https://cryptonite-amber.vercel.app">
-    <img src="https://img.shields.io/badge/Live_Demo-Open_App-10b981?style=for-the-badge&logo=vercel&logoColor=white" alt="Open live demo" />
+    <img src="https://img.shields.io/badge/OPEN_LIVE_APP-10b981?style=for-the-badge&logo=vercel&logoColor=white" alt="Open live application" />
   </a>
   <a href="https://github.com/itaygoldenberg/Cryptonite">
-    <img src="https://img.shields.io/badge/Source-GitHub-111827?style=for-the-badge&logo=github&logoColor=white" alt="View source on GitHub" />
+    <img src="https://img.shields.io/badge/VIEW_SOURCE-111827?style=for-the-badge&logo=github&logoColor=white" alt="View source on GitHub" />
+  </a>
+  <a href="https://www.linkedin.com/in/itay-goldenberg/">
+    <img src="https://img.shields.io/badge/CONNECT-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn" />
   </a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react&logoColor=07111f" alt="React 19" />
-  <img src="https://img.shields.io/badge/TypeScript-6-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 6" />
-  <img src="https://img.shields.io/badge/Redux_Toolkit-2-764abc?style=flat-square&logo=redux&logoColor=white" alt="Redux Toolkit 2" />
-  <img src="https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite&logoColor=white" alt="Vite 8" />
-  <img src="https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Deployed on Vercel" />
+  <a href="#features">Features</a>
+  &nbsp;&middot;&nbsp;
+  <a href="#architecture">Architecture</a>
+  &nbsp;&middot;&nbsp;
+  <a href="#technologies">Technology stack</a>
+  &nbsp;&middot;&nbsp;
+  <a href="#running-locally">Local setup</a>
 </p>
 
 > [!NOTE]
@@ -35,6 +30,16 @@
 ## Overview
 
 Cryptonite presents live data about the top 100 cryptocurrencies, draws real-time price reports, and provides AI-powered buying advice in one responsive single page application.
+
+<table>
+  <tr>
+    <td align="center" width="20%"><strong>100</strong><br /><sub>market assets</sub></td>
+    <td align="center" width="20%"><strong>5</strong><br /><sub>tracked coins</sub></td>
+    <td align="center" width="20%"><strong>20</strong><br /><sub>live readings</sub></td>
+    <td align="center" width="20%"><strong>1s</strong><br /><sub>browser updates</sub></td>
+    <td align="center" width="20%"><strong>AI</strong><br /><sub>market advice</sub></td>
+  </tr>
+</table>
 
 | Project detail | Implementation |
 |---|---|
@@ -125,6 +130,17 @@ Production secrets are read only by the Vercel Functions. They are not included 
 
 ## Technologies
 
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,ts,redux,vite,css,nodejs,vercel,git&theme=dark" alt="React, TypeScript, Redux, Vite, CSS, Node.js, Vercel and Git" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React_Router-7.18-ca4245?style=flat-square&logo=reactrouter&logoColor=white" alt="React Router 7.18" />
+  <img src="https://img.shields.io/badge/Axios-1.13-5a29e4?style=flat-square&logo=axios&logoColor=white" alt="Axios 1.13" />
+  <img src="https://img.shields.io/badge/Recharts-3.10-22b5bf?style=flat-square" alt="Recharts 3.10" />
+  <img src="https://img.shields.io/badge/Vercel_Functions-Serverless-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel Functions" />
+</p>
+
 | Area | Technologies |
 |---|---|
 | Frontend | React 19, TypeScript 6, CSS |
@@ -153,6 +169,26 @@ vercel.json             Production routing and SPA fallback
 Redux stores the coin list, selected coins and search term globally so navigation between pages does not require another coin-list request.
 
 ## APIs
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="./public/coingecko-logo.png" alt="CoinGecko logo" width="70" height="70" /><br />
+      <strong>CoinGecko</strong><br />
+      <sub>Market list, coin details and AI market inputs</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="./docs/coincap-logo.png" alt="CoinCap logo" width="70" height="70" /><br />
+      <strong>CoinCap</strong><br />
+      <sub>Batched live USD prices for Reports</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/OpenAI-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI logo" width="118" /><br />
+      <strong>OpenAI</strong><br />
+      <sub>Recommendation and explanation generation</sub>
+    </td>
+  </tr>
+</table>
 
 | Purpose | Provider |
 |---|---|
