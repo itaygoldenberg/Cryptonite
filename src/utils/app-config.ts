@@ -16,6 +16,7 @@ class AppConfig {
     public readonly useLocalCoinCapApi: boolean;
     public readonly useLocalOpenAiApi: boolean;
 
+    // Restores optional local keys and enables direct providers only in Development.
     public constructor() {
         this.coincapApiKey = decryptApiKey(ENCRYPTED_COINCAP_API_KEY);
         this.openaiKey = decryptApiKey(ENCRYPTED_OPENAI_API_KEY);

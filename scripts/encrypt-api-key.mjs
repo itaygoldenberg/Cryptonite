@@ -5,6 +5,7 @@ const OBFUSCATION_MASK = "Cryptonite submission key mask v1";
 const ENCRYPTED_PREFIX = "enc:";
 const label = process.argv[2] || "API";
 
+// Obfuscates a local API key with the reversible format documented in README.
 function encryptApiKey(value) {
     const keyBytes = new TextEncoder().encode(value.trim());
     const maskBytes = new TextEncoder().encode(OBFUSCATION_MASK);

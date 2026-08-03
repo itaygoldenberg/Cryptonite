@@ -76,6 +76,7 @@ export function AiAdviceWidget(props: AiAdviceWidgetProps) {
         }
     }
 
+    // Selects a coin and refreshes its advice when it is selected again.
     function selectCoin(coin: CoinModel): void {
         setActiveCoinId(coin.id);
 

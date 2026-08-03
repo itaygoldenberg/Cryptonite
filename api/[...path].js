@@ -11,6 +11,7 @@ let coinsCache = null;
 let pricesCache = null;
 const detailsCache = new Map();
 
+// Routes validated same-origin requests to the matching external provider.
 export async function handleApiRequest(request, response, forcedPath) {
     const origin = request.headers.origin;
     if (origin && ALLOWED_ORIGINS.has(origin)) {
@@ -176,6 +177,7 @@ async function getAdvice(body) {
     return { recommendation: answer.recommendation, explanation: answer.explanation };
 }
 
+// Normalizes, validates and limits the requested report symbols.
 function parseSymbols(value) {
     if (typeof value !== "string") return [];
     return [...new Set(value.split(",")
@@ -183,6 +185,7 @@ function parseSymbols(value) {
         .filter(symbol => /^[A-Z0-9_-]{1,20}$/.test(symbol)))].slice(0, 5);
 }
 
+// Validates the exact market-data shape accepted by the OpenAI endpoint.
 function isAiMarketData(value) {
     if (!value || typeof value !== "object") return false;
 
@@ -201,6 +204,7 @@ function isAiMarketData(value) {
 }
 
 
+// Handles unmatched API paths through the shared router.
 export default function handler(request, response) {
     return handleApiRequest(request, response);
 }

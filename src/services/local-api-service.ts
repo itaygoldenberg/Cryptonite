@@ -29,11 +29,13 @@ type OpenAiResponse = {
 // Supports the optional encrypted-key workflow during local development only.
 class LocalApiService {
 
+    // Loads the top 100 CoinGecko entries when local encrypted-key mode is enabled.
     public async getAllCoins(): Promise<CoinModel[]> {
         const response = await axios.get<CoinModel[]>(appConfig.coinsUrl);
         return response.data;
     }
 
+    // Loads one coin's current USD, EUR and ILS prices for local More Info.
     public async getCoinDetails(id: string): Promise<CoinDetailsModel> {
         const response = await axios.get<CoinGeckoDetails>(
             appConfig.coinDetailsUrl + encodeURIComponent(id)
@@ -42,6 +44,7 @@ class LocalApiService {
         return new CoinDetailsModel(prices.usd, prices.eur, prices.ils);
     }
 
+    // Maps CoinGecko market data to the exact fields required by AI Advice.
     public async getCoinDataForAi(id: string): Promise<AiMarketData> {
         const response = await axios.get<CoinGeckoDetails>(
             appConfig.coinDetailsUrl + encodeURIComponent(id)
@@ -60,6 +63,7 @@ class LocalApiService {
         };
     }
 
+    // Returns one batched CoinCap price response for the requested symbols.
     public async getPrices(symbols: string[]): Promise<Record<string, number>> {
         const response = await axios.get<{ data: CoinCapAsset[] }>(
             appConfig.pricesUrl + "/assets?limit=150",
@@ -79,6 +83,7 @@ class LocalApiService {
         return prices;
     }
 
+    // Sends the validated market snapshot to OpenAI and parses its JSON response.
     public async getAdvice(coinData: AiMarketData): Promise<AiAdviceModel> {
         const prompt = "You are a crypto analyst. Based on the following data, decide whether this coin is worth buying. "
             + "Answer in JSON with exactly two fields: recommendation (one short sentence) and explanation (one paragraph). "

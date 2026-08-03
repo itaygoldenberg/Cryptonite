@@ -2,18 +2,19 @@ import { CoinModel } from "../../../models/coin-model";
 import { getChangeKey } from "./report-cache";
 import type { ReportPoint } from "./report-cache";
 
-type CoinTooltipProps = {
-    active?: boolean;
-    payload?: any[];
-    data: ReportPoint[];
-    coins: CoinModel[];
-};
+class CoinTooltipProps {
+    public active?: boolean;
+    public payload?: any[];
+    public data: ReportPoint[] = [];
+    public coins: CoinModel[] = [];
+}
 
-type CoinLegendProps = {
-    payload?: any[];
-    coins: CoinModel[];
-};
+class CoinLegendProps {
+    public payload?: any[];
+    public coins: CoinModel[] = [];
+}
 
+// Renders the selected reading with each coin icon, price and percentage change.
 export function CoinTooltip({ active, payload, data, coins }: CoinTooltipProps) {
     if (!active || !payload || payload.length === 0) return null;
 
@@ -56,6 +57,7 @@ export function CoinTooltip({ active, payload, data, coins }: CoinTooltipProps) 
     );
 }
 
+// Renders the chart legend with the icon and series color of every selected coin.
 export function CoinLegend({ payload, coins }: CoinLegendProps) {
     if (!payload) return null;
 

@@ -5,6 +5,7 @@ export class CoinModel {
     public name: string;
     public image: string;
 
+    // Creates the basic coin record displayed throughout the application.
     public constructor(id: string, symbol: string, name: string, image: string) {
         this.id = id;
         this.symbol = symbol;

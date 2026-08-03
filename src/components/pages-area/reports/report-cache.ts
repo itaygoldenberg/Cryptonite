@@ -8,14 +8,17 @@ export type ReportPoint = {
     [symbol: string]: string | number;
 };
 
+// Builds the internal field name used to persist each coin's percentage change.
 export function getChangeKey(symbol: string): string {
     return `__change_${symbol}`;
 }
 
+// Builds a stable cache key for the current set of selected symbols.
 function getReportCacheKey(symbols: string[]): string {
     return REPORT_CACHE_PREFIX + [...symbols].sort().join(",");
 }
 
+// Removes invalid cached values and reconstructs missing percentage changes.
 function sanitizeReportData(data: ReportPoint[], symbols: string[]): ReportPoint[] {
     const cleanData: ReportPoint[] = [];
 

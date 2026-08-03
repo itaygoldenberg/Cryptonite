@@ -4,6 +4,7 @@ export class CoinDetailsModel {
     public eur: number;
     public ils: number;
 
+    // Creates a three-currency snapshot for the More Info panel.
     public constructor(usd: number, eur: number, ils: number) {
         this.usd = usd;
         this.eur = eur;

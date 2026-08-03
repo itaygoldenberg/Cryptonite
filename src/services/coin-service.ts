@@ -165,10 +165,12 @@ class CoinService {
         };
     }
 
+    // Verifies that a cached response contains the required top 100 coins.
     private isCompleteList(coins: unknown): boolean {
         return Array.isArray(coins) && coins.length >= COINS_MIN_COUNT;
     }
 
+    // Reads the coin list cache and optionally accepts an expired snapshot.
     private readCache(allowExpired = false): CoinModel[] | null {
         try {
             const raw = localStorage.getItem(COINS_CACHE_KEY);
@@ -188,6 +190,7 @@ class CoinService {
         }
     }
 
+    // Stores the complete coin list together with its save time.
     private writeCache(coins: CoinModel[]): void {
         try {
             localStorage.setItem(COINS_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), coins }));
@@ -197,6 +200,7 @@ class CoinService {
         }
     }
 
+    // Reads a cached details or AI payload and supports the legacy value shape.
     private readLocalCache<T>(key: string): T | null {
         try {
             const raw = localStorage.getItem(key);
@@ -209,6 +213,7 @@ class CoinService {
         }
     }
 
+    // Stores a details or AI payload for use when its provider is unavailable.
     private writeLocalCache(key: string, data: unknown): void {
         try {
             localStorage.setItem(key, JSON.stringify({ savedAt: Date.now(), data }));
